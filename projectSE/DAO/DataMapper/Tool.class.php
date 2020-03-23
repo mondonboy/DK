@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Diiar
- * Date: 8/1/2562
- * Time: 15:21
- */
+
 
 class Tool
 {
