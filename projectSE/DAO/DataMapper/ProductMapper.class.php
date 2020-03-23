@@ -4,7 +4,7 @@
 class ProductMapper
 {
     private $productList;
-    private const TABLE="products";
+    private const TABLE="product";
 
     public function __construct() {
 

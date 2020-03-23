@@ -1,9 +1,9 @@
-<?
-function createTable(array $head,array $data){
+<?php
+function createTable(array $header,array $data){
     echo "<table class='w3-table w3-striped w3-white'>";
     echo "<tr>";
-    foreach ($head as $h){
-        echo "<th>$h</th>";
+    foreach ($header as $h){
+        echo "<th class='w3-green'>$h</th>";
     }
     echo "</tr>";
     foreach ($data as $row) {
