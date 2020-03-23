@@ -2,7 +2,7 @@
 class MemberMapper{
 
     private $memberList;
-    private const TABLE = "members";
+    private const TABLE = "member";
 
     public function __construct() {
 
@@ -14,7 +14,7 @@ class MemberMapper{
         $this->memberList  = array();
         while ($memb = $stmt->fetch())
         {
-            $this->memberList[$memb->getMemberID()] = $memb;
+            $this->memberList[$memb->getUid()] = $memb;
         }
     }
 
@@ -27,18 +27,18 @@ class MemberMapper{
 
     public function update(Member $memb): bool {
 
-        if (isset($this->memberList[$memb->getMemberID()])) {
+        if (isset($this->memberList[$memb->getUid()])) {
             $query = "UPDATE ".self::TABLE." SET ";
             $membIt = $memb->getIterator();
             foreach ($membIt as $prop => $val) {
                 $query .= " $prop='$val',";
             }
             $query = substr($query, 0, -1);
-            $query .= " WHERE id = ".$memb->getMemberID();
+            $query .= " WHERE id = ".$memb->getUid();
             //echo $query;
             $con = Db::getInstance();
             if ($con->exec($query) === true) {
-                $this->memberList[$memb->getMemberID()] = $memb;
+                $this->memberList[$memb->getUid()] = $memb;
                 return true;
             }
             return false;

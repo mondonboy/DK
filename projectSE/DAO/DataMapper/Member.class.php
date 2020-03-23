@@ -2,51 +2,138 @@
 class Member{
 
      
-    private $ID;
-    private $username;
-    private $password;
-    private $name;
-    private $surname;
-    
+    private $uid;
+    private $kuID;
+    private $prename;
+    private $firstname;
+    private $lastname;
+    private $type;
+    private $email;
+    private $USESERROLES;
 
-    public function getMemberID() :int{
-        return $this->ID;
+    /**
+     * @return mixed
+     */
+    public function getUid() :string
+    {
+        return $this->uid;
     }
 
-    public function getUsername() :string{
-        return $this->username;
+    /**
+     * @param mixed $uid
+     */
+    public function setUid(string $uid)
+    {
+        $this->uid = $uid;
     }
 
-    public function getPassword() :string{
-        return $this->password;
+    /**
+     * @return mixed
+     */
+    public function getKuID():string
+    {
+        return $this->kuID;
     }
 
-    public function getName() :string{
-        return $this->name;
+    /**
+     * @param mixed $kuID
+     */
+    public function setKuID(string $kuID)
+    {
+        $this->kuID = $kuID;
     }
 
-    public function getSurname() :string{
-        return $this->surname;
+    /**
+     * @return mixed
+     */
+    public function getPrename():string
+    {
+        return $this->prename;
     }
 
-    public function setId(int $id) {
-        $this->ID = $id;
+    /**
+     * @param mixed $prename
+     */
+    public function setPrename(string $prename)
+    {
+        $this->prename = $prename;
     }
 
-    public function setUsername(string $username) {
-        $this->username = $username;
+    /**
+     * @return mixed
+     */
+    public function getFirstname():string
+    {
+        return $this->firstname;
     }
 
-    public function setPassword(string $password) {
-        $this->password = $password;
+    /**
+     * @param mixed $firstname
+     */
+    public function setFirstname(string $firstname)
+    {
+        $this->firstname = $firstname;
     }
 
-    public function setName(string $name) {
-        $this->name = $name;
+    /**
+     * @return mixed
+     */
+    public function getLastname():string
+    {
+        return $this->lastname;
     }
 
-    public function setSurname(string $surname) {
-        $this->surname = $surname;
+    /**
+     * @param mixed $lastname
+     */
+    public function setLastname(string $lastname)
+    {
+        $this->lastname = $lastname;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType():string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType(string $type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail():string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail(string $email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUSESERROLES() :string
+    {
+        return $this->USESERROLES;
+    }
+
+    public function setUSESERROLES($USESERROLES): string
+    {
+        $this->USESERROLES = $USESERROLES;
     }
     
 
