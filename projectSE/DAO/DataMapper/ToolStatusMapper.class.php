@@ -1,45 +1,45 @@
 <?php
 
 
-class ToolMapper
+class ToolStatusMapper
 {
-    private $toolList;
-    private const TABLE="tools";
+    private $tsList;
+    private const TABLE="tools_status";
 
     public function __construct() {
 
         $con = Db::getInstance();
         $query = "SELECT * FROM ".self::TABLE;
         $stmt = $con->prepare($query);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, "Tool");
+        $stmt->setFetchMode(PDO::FETCH_CLASS, "ToolsStatus");
         $stmt->execute();
-        $this->toolList  = array();
+        $this->tsList  = array();
         while ($prod = $stmt->fetch())
         {
-            $this->toolList[$prod->getOID()] = $prod;
+            $this->tsList[$prod->getOSID()] = $prod;
         }
     }
 
     public function getAll(): array {
-        return $this->toolList;
+        return $this->tsList;
     }
-    public function get(int $id): ?Tool {
-        return $this->toolList[$id]??null;
+    public function get(int $id): ?ToolsStatus {
+        return $this->tsList[$id]??null;
     }
-    public function update(Tool $prod) {
+    public function update(ToolsStatus $prod) {
 
-        if (isset($this->toolList[$prod->getOID()])) {
+        if (isset($this->tsList[$prod->getOSID()])) {
             $query = "UPDATE ".self::TABLE." SET ";
             $prodIt = $prod->getIterator();
             foreach ($prodIt as $prop => $val) {
                 $query .= " $prop='$val',";
             }
             $query = substr($query, 0, -1);
-            $query .= " WHERE OID = ".$prod->getOID();
+            $query .= " WHERE OID = ".$prod->getOSID();
             //echo $query;
             $con = Db::getInstance();
             if ($con->exec($query) === true) {
-                $this->toolList[$prod->getOID()] = $prod;
+                $this->tsList[$prod->getOSID()] = $prod;
                 return true;
             }
             return false;
