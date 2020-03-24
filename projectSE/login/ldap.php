@@ -35,11 +35,15 @@ function user_authen($username, $ldappass, $filter1 = "")
 	$base_dn = "dc=ku,dc=ac,dc=th";
 
 	$ldapserver = ldap_connect($host1);
+	echo "hello 1";
 	if (!$ldapserver) {
 		$ldapserver = ldap_connect($host2);
+		echo "hello 2";
 		if (!$ldapserver) {
 			$ldapserver = ldap_connect($host3);
+			echo "hello 3";
 		}
+
 	}
 
 	$bind = ldap_bind($ldapserver);

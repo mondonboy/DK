@@ -6,7 +6,7 @@
 </head>
 <body>
 <label></label>
-<form action="../views/ldap.php" method="POST" name="loginform">
+<form action="ldap.php" method="POST" name="loginform">
   <br />
   <table width="310" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#eeeedd""><tr><td><div align="left">
     <table width="310" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#eeeedd"">
