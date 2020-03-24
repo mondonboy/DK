@@ -26,7 +26,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../WS11" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
   </component>
   <component name="RecentsManager">
@@ -70,7 +70,8 @@
       <workItem from="1585036649259" duration="11000" />
       <workItem from="1585037546612" duration="125000" />
       <workItem from="1585037673761" duration="852000" />
-      <workItem from="1585038569611" duration="2827000" />
+      <workItem from="1585038569611" duration="6745000" />
+      <workItem from="1585048020827" duration="15590000" />
     </task>
     <servers />
   </component>
