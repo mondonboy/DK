@@ -27,6 +27,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+<<<<<<< HEAD
+=======
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+>>>>>>> 5e4877c7220af5cbff6ce8b3b394f1a27d8ab100
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -59,9 +63,19 @@
       <option name="presentableId" value="Default" />
       <updated>1584951385670</updated>
       <workItem from="1584951388298" duration="5993000" />
+<<<<<<< HEAD
       <workItem from="1585033310220" duration="2147000" />
       <workItem from="1585037526814" duration="758000" />
       <workItem from="1585038345395" duration="5722000" />
+=======
+      <workItem from="1584983460012" duration="192000" />
+      <workItem from="1584984094304" duration="6288000" />
+      <workItem from="1585026989596" duration="2384000" />
+      <workItem from="1585036649259" duration="11000" />
+      <workItem from="1585037546612" duration="125000" />
+      <workItem from="1585037673761" duration="852000" />
+      <workItem from="1585038569611" duration="2827000" />
+>>>>>>> 5e4877c7220af5cbff6ce8b3b394f1a27d8ab100
     </task>
     <servers />
   </component>
