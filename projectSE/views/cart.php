@@ -1,19 +1,29 @@
 <?php
+
+try {
+    if (!isset($_SESSION['member']) || !is_a($_SESSION['member'],"Member"))
+    {
+        header("Location: " . Router::getSourcePath() . "index.php");
+
+    }
 session_start();
-include("../inc/helper_function.inc.php");
+require_once Router::getSourcePath()."inc/helper_function.inc.php";
+
     $title = "Menu";
     ob_start();
 ?>
+
 <body>
-    <div class="container w3-red">
+
+    <div class="container">
         <h1 class="w3-jumbo w3-animate-top w3-center">ระบบยืม-คืนอุปกรณ์</h1>
     </div>
-    <div class="container  m3 w3-yellow">
+    <div class="container m3">
         <!-- Sidebar/menu -->
-        <nav class="w3-sidebar w3-green  w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+        <nav class="w3-sidebar w3-green w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
             <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
-            <div class="w3-container w3-card">
-                <p class="w3-center"><img src="../img/student.png" class="w3-circle" style="height: 106px;width: 106px "alt="Avatar"></p>
+            <div class="w3-container">
+                <p class="w3-center"><img src="student.png" class="w3-circle" style="height: 106px;width: 106px "alt="Avatar"></p>
                 <h4 class="w3-center"><b>ข้อมูลบัญชี</b></h4>
                 <p class="w3-center">xxxxxxxxxx</p>
                 <p class="w3-center">I am Admin</p>
@@ -24,12 +34,11 @@ include("../inc/helper_function.inc.php");
                 <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">แสดงหมวดหมู่</a>
                 <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">แสดงอุปกรณ์</a>
                 <a href="#services" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">ประวัติการยืม</a>
-
             </div>
         </nav>
     </div>
-    <div class="w3-container w3-black" style="margin-left: 300px">
-        <form method="get" action="">
+    <div class="w3-container" style="margin-left: 300px">
+        <form method="get" action=<?= Router::getSourcePath() . "index.php?controller=Tool&action=cart" ?>>
         <div class="w3-container w3-middle" style="margin: 10px">
             <div class="w3-row">
                         <div class="w3-col m8 w3-padding">
@@ -55,6 +64,10 @@ include("../inc/helper_function.inc.php");
         </form>
 <?php
 $content = ob_get_clean();
-require_once ("../templates/layout.php");
 
+include Router::getSourcePath()."templates/layout.php";
+} catch (Throwable $e) { // PHP 7++
+    echo "Access denied: No Permission to view this page";
+    exit(1);
+}
 ?>
