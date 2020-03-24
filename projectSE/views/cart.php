@@ -38,7 +38,7 @@ require_once Router::getSourcePath()."inc/helper_function.inc.php";
         </nav>
     </div>
     <div class="w3-container" style="margin-left: 300px">
-        <form method="get" action="">
+        <form method="get" action=<?= Router::getSourcePath() . "index.php?controller=Tool&action=cart" ?>>
         <div class="w3-container w3-middle" style="margin: 10px">
             <div class="w3-row">
                         <div class="w3-col m8 w3-padding">
