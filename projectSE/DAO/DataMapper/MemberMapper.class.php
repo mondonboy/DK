@@ -49,5 +49,19 @@ class MemberMapper{
 
     }
 
+    public function insert() {
+        $con = Db::getInstance();
+        $values = "";
+        foreach ($this as $prop => $val) {
+            $values .= "'$val',";
+        }
+        $values = substr($values,0,-1);
+        $query = "INSERT INTO ".self::TABLE." VALUES ($values)";
+        //echo $query;
+        $res = $con->exec($query);
+        $this->ID = $con->lastInsertId();
+        return $res;
+    }
+
 
 }
