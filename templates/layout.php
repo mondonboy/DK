@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="th" xmlns="http://www.w3.org/1999/html">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,11 +26,7 @@
 <div id="container" style="width: 90%;">
     <div id="header">
 <?php include("header.inc.php"); //หาไม่เจอ จะหาที่โฟลเดอร์เดียวกัน ?>
-<<<<<<< HEAD
-    </div>
-=======
 </div>
->>>>>>> 2b35294a49aacb808b1ba45fd3ca54d034958808
 <div id="content">
     <?= $content ?>
 </div>
