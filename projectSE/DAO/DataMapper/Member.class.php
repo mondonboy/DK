@@ -7,9 +7,9 @@ class Member{
     private $prename;
     private $firstname;
     private $lastname;
-    private $type;
+    private $types;
     private $email;
-    private $USESERROLES;
+    private $USERROLES;
 
     /**
      * @return mixed
@@ -96,7 +96,7 @@ class Member{
      */
     public function getType():string
     {
-        return $this->type;
+        return $this->types;
     }
 
     /**
@@ -104,7 +104,7 @@ class Member{
      */
     public function setType(string $type)
     {
-        $this->type = $type;
+        $this->types = $type;
     }
 
     /**
@@ -126,14 +126,14 @@ class Member{
     /**
      * @return mixed
      */
-    public function getUSESERROLES() :string
+    public function getUSERROLES() :string
     {
-        return $this->USESERROLES;
+        return $this->USERROLES;
     }
 
-    public function setUSESERROLES($USESERROLES): string
+    public function setUSERROLES($USESERROLES): string
     {
-        $this->USESERROLES = $USESERROLES;
+        $this->USERROLES = $USESERROLES;
     }
     
 

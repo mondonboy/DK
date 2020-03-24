@@ -14,9 +14,17 @@ class Db {
     private function __construct() {}
     private function __clone() {}
     public static function getInstance() {
-        if (!isset(self::$instance)) {
-            self::$instance = new PDO(self::$dsn,self::$user,self::$pass);
-            self::$instance->query("SET NAMES UTF8");
+        try{
+            if (!isset(self::$instance)) {
+                self::$instance = new PDO("mysql:dbname=se62_06;host=localhost","se62_06","se62_06");
+                self::$instance->query("SET NAMES UTF8");
+                self::$instance->query("SET character_set_results=utf8");
+                self::$instance->query("SET character_set_client=utf8");
+                self::$instance->query("SET character_set_connection=utf8");
+            }
+        }catch (PDOException $e) {
+            echo "Error : " . $e->getMessage() . "<br/>";
+            die();
         }
         return self::$instance;
     }

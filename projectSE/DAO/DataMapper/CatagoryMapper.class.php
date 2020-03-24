@@ -10,13 +10,15 @@ class CatagoryMapper
 
         $con = Db::getInstance();
         $query = "SELECT * FROM ".self::TABLE;
-        $stmt = $con->prepare($query);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, "Catagory");
-        $stmt->execute();
+        $stmt = $con->query($query);
+        //$stmt->setFetchMode(PDO::FETCH_CLASS, "Catagory");
         $this->catList  = array();
-        while ($prod = $stmt->fetch())
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row)
         {
-            $this->catList[$prod->getOTID()] = $prod;
+            $cat = new Catagory();
+            $cat->setOTID($row['OT_ID']);
+            $cat->setOTName($row['OT_Name']);
+            $this->catList[$cat->getOTID()] = $cat;
         }
     }
 
@@ -35,7 +37,7 @@ class CatagoryMapper
                 $query .= " $prop='$val',";
             }
             $query = substr($query, 0, -1);
-            $query .= " WHERE OID = ".$prod->getOTID();
+            $query .= " WHERE OT_ID = ".$prod->getOTID();
             //echo $query;
             $con = Db::getInstance();
             if ($con->exec($query) === true) {

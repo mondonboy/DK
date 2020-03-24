@@ -6,11 +6,11 @@ require $rootPath . "classes/Router.class.php";
 /**
  * Load Models
  */
-//spl_autoload_register(function ($class) {
-//    $path = $GLOBALS['rootPath'].'DAO/ActiveRecord/' . $class . '.class.php';
-//    if (file_exists($path))
-//        require_once $path;
-//});
+spl_autoload_register(function ($class) {
+    $path = $GLOBALS['rootPath'].'DAO/ActiveRecord/' . $class . '.class.php';
+    if (file_exists($path))
+        require_once $path;
+});
 spl_autoload_register(function ($class) {
     $path = $GLOBALS['rootPath'].'DAO/' . $class . '.class.php';
     if (file_exists($path))

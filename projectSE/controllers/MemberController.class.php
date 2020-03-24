@@ -1,4 +1,11 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Diiar
+ * Date: 24/1/2562
+ * Time: 15:07
+ */
+require ("./DAO/Db.class.php");
 class MemberController {
 
     /**
@@ -15,6 +22,8 @@ class MemberController {
                 $pass = $params["POST"]["password"]??"";
                 if ($username !== "" && $pass !== "") {
                     $this->$action($username, $pass);
+                }else{
+                    header("Location");
                 }
                 break;
             case "index":
@@ -26,17 +35,51 @@ class MemberController {
 
     }
 
-    private function login(string $username, string $password) {
-        $member = Member::findByAccount($username,$password) ;
-        if ($member !== null){
+    private function login(string $username,string $password)
+    {
+
+        $info = KULDAP::user_authen($username, $password, $username);
+        /*print_r($info[0]['uid'][0]);
+        try {
+            $mem = Member::findByAccount("b6020500390");
+            print_r($mem);
+        }catch (Throwable $e){
+            echo $e;
+    }*/
+        if($info == null) {
+            header("Location: ".Router::getSourcePath()."index.php?msg=invalid user");
+        }else{
+            $member = Member::findByAccount($info[0]["uid"][0]);
+            if($member == null){
+                $mb = new Member($info[0]["uid"][0],$info[0]["idcode"][0],$info[0]["thaiprename"][0],$info[0]["first-name"][0],$info[0]["last-name"][0],$info[0]["type-person"][0],$info[0]["google-mail"][0],"CLIENT");
+                $mb->insert();
+                $member = $mb;
+            }
             session_start();
             $_SESSION['member'] = $member;
-            $_SESSION['productList'] = Product::findAll();
-            include Router::getSourcePath()."views/cart.inc.php";
+            include Router::getSourcePath() . "views/cart.php";
         }
-        else {
-            header("Location: ".Router::getSourcePath()."index.php?msg=invalid user");
-        }
+        //include Router::getSourcePath()."views/cart.php";
+        //}
+        /*if ($username == "" || $password == "") {
+            header("Location: index.php?error=กรอกข้อมูลไม่ครบ!");
+        } else {
+            $info = MemberMapper::Auth($username,$password,$username);
+            if ($info[0]["uid"][0] == "") {
+                header("Location: index.php?error=รหัสผู้ใช้หรือรหัสผิด!");
+            } else {
+                $member = MemberMapper::findByUid($info[0]["uid"][0]);
+                if ($member !== null) {
+                    session_start();
+                    $_SESSION['member'] = $member;
+                    //$_SESSION['productList'] = Product::findAll();
+                    include Router::getSourcePath() . "views/cart.php";
+                } else {
+                   $check =  MemberMapper::insert($member);
+                   print_r($check);
+                }
+            }
+        }*/
     }
 
     // ควรมีสำหรับ controller ทุกตัว
@@ -44,5 +87,5 @@ class MemberController {
 
     }
 
+
 }
-?>
