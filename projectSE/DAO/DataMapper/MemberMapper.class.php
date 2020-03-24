@@ -21,7 +21,7 @@ class MemberMapper{
     public function getAll(): array {
         return $this->memberList;
     }
-    public function findByUid(int $id): ?Member {
+    public function get(int $id): ?Member {
         return $this->memberList[$id]??null;
     }
 
@@ -49,10 +49,10 @@ class MemberMapper{
 
     }
 
-    public function insert(Member $memb) {
+    public function insert() {
         $con = Db::getInstance();
         $values = "";
-        foreach ($memb as $prop => $val) {
+        foreach ($this as $prop => $val) {
             $values .= "'$val',";
         }
         $values = substr($values,0,-1);
