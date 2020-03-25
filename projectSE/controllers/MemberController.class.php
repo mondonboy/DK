@@ -55,9 +55,24 @@ class MemberController {
                 $mb->insert();
                 $member = $mb;
             }
-            session_start();
-            $_SESSION['member'] = $member;
-            include Router::getSourcePath() . "views/cart.php";
+            else{
+                session_start();
+                $_SESSION['member'] = $member;
+                $_SESSION['listmembers'] = Member::findAll();
+                $_SESSION['catagory']=Catagory::findAll();
+                $_SESSION['tools'] = Tool::findAll();
+                if($member->getUSERROLES()=="ADMIN"){
+                    include Router::getSourcePath() . "views/RentAdmin.php";
+                }
+                if($member->getUSERROLES()=="MANAGER"){
+                    include Router::getSourcePath() . "views/Manager/RentManager.php";
+                }
+                if($member->getUSERROLES()=="USER"){
+                    include Router::getSourcePath() . "views/User/RentUser.php";
+                }
+
+            }
+
         }
         //include Router::getSourcePath()."views/cart.php";
         //}

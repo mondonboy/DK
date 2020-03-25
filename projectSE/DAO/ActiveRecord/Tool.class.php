@@ -154,7 +154,7 @@ class Tool
         $catList  = array();
         foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row)
         {
-            $catList[$row["OID"]] = new Tool($row["OID"],$row["Oname"],$row["detail"],$row["serial"],$row["objType"],$row["status"],$row["Permited"]);
+            $catList[$row["OID"]] = new Tool($row["OID"],$row["Oname"],$row["detail"],$row["serial"],$row["objType"],$row["objStatus"],$row["Permited"]);
         }
         return $catList;
     }

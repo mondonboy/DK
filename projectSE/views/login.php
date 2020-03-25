@@ -1,42 +1,43 @@
+<?php
+$title = "Shopping Cart";
+try {
+ob_start();
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
-<title>Nontri Ldap Authentication Demo</title>
-</head>
-<body>
-<form action="login/ldap.php" method="POST" name="loginform" action=<?= Router::getSourcePath() . "index.php?controller=Member&action=login" ?>>
+<h1>ระบบยืม-คืนอุปกรณ์</h1>
+<form method="POST" name="loginform" action=<?= Router::getSourcePath() . "index.php?controller=Member&action=login" ?>>
   <br />
-  <table width="310" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#eeeedd""><tr><td><div align="left">
-    <table width="310" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#eeeedd"">
-      <tr>
-        <td height="61" colspan="3"><div align="right">Nontri LDAP Authentication &nbsp;<br />
-        </div></td>
-      </tr>
-      <tr>
-        <td width="122" height="36"><div align="right">Username : </div></td>
-        <td width="10"><div align="center"></div></td>
-        <td width="174"><div align="left">
-            <input name="username" type="text" size="20" />
-        </div></td>
-      </tr>
-      <tr>
-        <td height="35"><div align="right" >Password : </div></td>
-        <td><div align="center"></div></td>
-        <td><div align="left">
-            <input name="password" type="password" id="password" size="20" />
-        </div></td>
-      </tr>
-      <tr>
-        <td height="40" colspan="3"><div align="center">
-            <input name="submit" type="submit" value="Login" />
-          &nbsp;&nbsp;
-          <input name="Reset" type="reset" value="Clear" />
-        </div></td>
-      </tr>
-    </table>
-  </div></td>    </tr>
-  </table>
+    <fieldset>
+
+        <div  class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Username</span>
+            </div>
+            <input  class="form-control" type="text" name="username" id="username" required />
+        </div>
+        <div  class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Password</span>
+            </div>
+            <input class="form-control" type="password" name="password" id="password" required/>
+
+        </div>
+        <button type="submit" class="btn btn-outline-primary" onclick="checkLogin()">Login</button>
+        <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+
+    </fieldset>
 </form>
-</body>
-</html>
+    <?php
+
+    $content = ob_get_clean();
+
+    include Router::getSourcePath()."templates/layout.php";
+} // -- try
+catch (Throwable $e) {
+    ob_clean(); // ล้าง output เดิมที่ค้างอยู่จากการสร้าง page
+    echo "Access denied: No Permission to view this page";
+    exit(1);
+}
+?>

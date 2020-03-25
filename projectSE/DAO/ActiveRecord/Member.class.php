@@ -211,7 +211,7 @@ class Member{
             $query .= " $prop='$val',";
         }
         $query = substr($query, 0, -1);
-        $query .= " WHERE id = ".$this->getId();
+        $query .= " WHERE uid = '".$this->getId()."'";
         $con = Db::getInstance();
         $res = $con->exec($query);
         return $res;
