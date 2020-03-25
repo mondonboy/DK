@@ -10,6 +10,7 @@ class Tool
     private $objType;
     private $status;
     private $Permited;
+    private const TABLE = "tools";
 
     /**
      * Tool constructor.
@@ -153,12 +154,12 @@ class Tool
         $catList  = array();
         foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row)
         {
-            $catList[$row["OID"]] = new Catagory($row["OID"],$row["OName"],$row["detail"],$row["serial"],$row["objType"],$row["status"],$row["Permited"]);
+            $catList[$row["OID"]] = new Tool($row["OID"],$row["Oname"],$row["detail"],$row["serial"],$row["objType"],$row["status"],$row["Permited"]);
         }
         return $catList;
     }
 
-    public static function findByID(string $username): ?Catagory {
+    public static function findByID(string $username): ?Tool {
         $con = Db::getInstance();
         $query = "SELECT * FROM ".self::TABLE." where OID = '$username'";
         $stmt = $con->query($query);
@@ -167,7 +168,7 @@ class Tool
         if ($cat = $stmt->fetch(PDO::FETCH_ASSOC))
         {
             $cata = self::findAll();
-            return $cata[$cat['OT_Name']];
+            return $cata[$cat['OID']];
         }
         return null;
     }
@@ -192,7 +193,7 @@ class Tool
             $query .= " $prop='$val',";
         }
         $query = substr($query, 0, -1);
-        $query .= " WHERE OT_ID = ".$this->getOTID();
+        $query .= " WHERE OID = ".$this->getOID();
         $con = Db::getInstance();
         $res = $con->exec($query);
         return $res;

@@ -1,55 +1,55 @@
 <?php
 
 
-class Catagory
+class ToolStatus
 {
-    private  $OT_ID;
-    private $OT_Name;
-    private const TABLE = "catagory";
+    private $OS_ID;
+    private $OSStatus;
+    private const TABLE = "tools_status";
 
     /**
-     * Catagory constructor.
-     * @param $OT_ID
-     * @param $OT_Name
+     * ToolStatus constructor.
+     * @param $OS_ID
+     * @param $OSStatus
      */
-    public function __construct($OT_ID, $OT_Name)
+    public function __construct($OS_ID, $OSStatus)
     {
-        $this->OT_ID = $OT_ID;
-        $this->OT_Name = $OT_Name;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getOTID()
-    {
-        return $this->OT_ID;
-    }
-
-    /**
-     * @param mixed $OT_ID
-     */
-    public function setOTID($OT_ID): void
-    {
-        $this->OT_ID = $OT_ID;
+        $this->OS_ID = $OS_ID;
+        $this->OSStatus = $OSStatus;
     }
 
     /**
      * @return mixed
      */
-    public function getOTName()
+    public function getOSID()
     {
-        return $this->OT_Name;
+        return $this->OS_ID;
     }
 
     /**
-     * @param mixed $OT_Name
+     * @param mixed $OS_ID
      */
-    public function setOTName($OT_Name): void
+    public function setOSID($OS_ID): void
     {
-        $this->OT_Name = $OT_Name;
+        $this->OS_ID = $OS_ID;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getOSStatus()
+    {
+        return $this->OSStatus;
+    }
+
+    /**
+     * @param mixed $OSStatus
+     */
+    public function setOSStatus($OSStatus): void
+    {
+        $this->OSStatus = $OSStatus;
+    }
+
 
 
     public static function findAll(): array {
@@ -61,21 +61,21 @@ class Catagory
         $catList  = array();
         foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row)
         {
-            $catList[$row["OT_ID"]] = new Catagory($row["OT_ID"],$row["OT_Name"]);
+            $catList[$row["OS_ID"]] = new ToolStatus($row["OS_ID"],$row["OSStatus"]);
         }
         return $catList;
     }
 
-    public static function findByID(string $username): ?Catagory {
+    public static function findByID(string $username): ?ToolStatus {
         $con = Db::getInstance();
-        $query = "SELECT * FROM ".self::TABLE." where OT_ID = '$username'";
+        $query = "SELECT * FROM ".self::TABLE." where OS_ID = '$username'";
         $stmt = $con->query($query);
         //$stmt->setFetchMode(PDO::FETCH_CLASS, "Member");
         //$stmt->execute();
         if ($cat = $stmt->fetch(PDO::FETCH_ASSOC))
         {
             $cata = self::findAll();
-            return $cata[$cat['OT_ID']];
+            return $cata[$cat['OS_ID']];
         }
         return null;
     }
@@ -100,7 +100,7 @@ class Catagory
             $query .= " $prop='$val',";
         }
         $query = substr($query, 0, -1);
-        $query .= " WHERE OT_ID = ".$this->getOTID();
+        $query .= " WHERE OS_ID = ".$this->getOSID();
         $con = Db::getInstance();
         $res = $con->exec($query);
         return $res;
